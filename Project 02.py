@@ -53,16 +53,20 @@ class Roller:
             print("------------------")
             print(" 1. Start playing")
             print(" 9. Quit")
-            menuChoice = int(input("Enter option: "))
 
-            if menuChoice == 1:  # executes if the user wants to play Craps
-                menuFlag = False  # ends the loop
-            elif menuChoice == 9:  # executes if the user wants to walk
-                print("Thank you for playing Craps. You finished with", coins, "coins.")
-                print("Aborting program...")
-                quit()  # ends program
-            else:  # executes if the user enters an invalid input
-                print("Error: please enter valid input\n")
+            try:
+                menuChoice = int(input("Enter option: "))
+
+                if menuChoice == 1:  # executes if the user wants to play Craps
+                    menuFlag = False  # ends the loop
+                elif menuChoice == 9:  # executes if the user wants to walk
+                    print("Thank you for playing Craps. You finished with", coins, "coins.")
+                    print("Aborting program...")
+                    quit()  # ends program
+                else:  # executes if the user enters an invalid input
+                    print("Error: please enter valid input\n")
+            except ValueError:
+                print("Error: please enter a valid numeric choice\n")
 
         return
 
@@ -96,16 +100,20 @@ class Roller:
             print("-------------")
             print("\t1. Yes")
             print("\t2. No")
-            choice = int(input("Enter choice: "))  # reads in user's choice
 
-            if choice == 2:  # executes if user chose a 2, meaning they wish to stop rolling/playing
-                print("Game ended. You finished with", coins, "coins.")  # prints the user's current coin value
-                print("Thank you for playing Craps.")
-                quit()  # ends program
-            elif choice != 1 and choice != 2:  # executes if user makes an invalid choice
-                print("Error: Please enter valid input.")
-            else:
-                return  # returns user's choice
+            try:
+                choice = int(input("Enter choice: "))  # reads in user's choice
+
+                if choice == 2:  # executes if user chose a 2, meaning they wish to stop rolling/playing
+                    print("Game ended. You finished with", coins, "coins.")  # prints the user's current coin value
+                    print("Thank you for playing Craps.")
+                    quit()  # ends program
+                elif choice != 1 and choice != 2:  # executes if user makes an invalid choice
+                    print("Error: Please enter valid input.")
+                else:
+                    return  # returns user's choice
+            except ValueError:
+                print("Error: please enter valid numeric choice\n")
 
     def singlesRoll(self):
         # This method runs if the user is rolling with an active single-valued side-bet.
@@ -146,14 +154,19 @@ def beginningBetPrompt():
         print("-------------------------------------------")
         print("\t1. PASS Line")
         print("\t2. DON'T PASS Line")
-        lineChoice = int(input("\tEnter your choice: "))  # stores user's choice
 
-        if lineChoice == 1:  # executes if user wants to bet on the PASS line; user input a 1 above
-            return 1  # returns a 1
-        elif lineChoice == 2:  # executes if user wants to bet on the DON'T PASS line; user input a 2 above
-            return 2  # returns a 2
-        else:  # executes if user input an invalid input
-            print("Error: enter a valid input\n")
+        try:
+            lineChoice = int(input("\tEnter your choice: "))  # stores user's choice
+
+            if lineChoice == 1:  # executes if user wants to bet on the PASS line; user input a 1 above
+                return 1  # returns a 1
+            elif lineChoice == 2:  # executes if user wants to bet on the DON'T PASS line; user input a 2 above
+                return 2  # returns a 2
+            else:  # executes if user input an invalid input
+                print("Error: enter a valid input\n")
+        except ValueError:
+            print("Error: please enter an integer corresponding to your line choice\n")
+
 
 
 def passLine():
@@ -161,11 +174,14 @@ def passLine():
     betFlag = True  # Boolean flag variable
 
     while betFlag:  # runs while flag is true
-        betValue = int(input("Enter value of bet (1 to 5 coins): "))  # stores user's bet wager
-        if 1 <= betValue <= 5:  # executes if bet from 1 to 5
-            return betValue  # returns wager
-        else:  # executes if user placed an invalid input
-            print("Error: please enter value input\n")
+        try:
+            betValue = int(input("Enter value of bet (1 to 5 coins): "))  # stores user's bet wager
+            if 1 <= betValue <= 5:  # executes if bet from 1 to 5
+                return betValue  # returns wager
+            else:  # executes if user placed an invalid input
+                print("Error: please enter valid input\n")
+        except ValueError:
+            print("Error: enter an integer input\n")
 
 
 def dontPassLine():
@@ -173,11 +189,14 @@ def dontPassLine():
     betFlag = True  # Boolean flag variable
 
     while betFlag:  # runs while flag is true
-        betValue = int(input("Enter value of bet (1 to 5 coins): "))  # stores user's bet wager
-        if 1 <= betValue <= 5:  # executes if bet from 1 to 5
-            return betValue  # returns wager
-        else:  # executes if user placed an invalid input
-            print("Error: please enter value input\n")
+        try:
+            betValue = int(input("Enter value of bet (1 to 5 coins): "))  # stores user's bet wager
+            if 1 <= betValue <= 5:  # executes if bet from 1 to 5
+                return betValue  # returns wager
+            else:  # executes if user placed an invalid input
+                print("Error: please enter valid input\n")
+        except ValueError:
+            print("Error: enter an integer input")
 
 
 def sidebetPrompt():
@@ -187,14 +206,18 @@ def sidebetPrompt():
         print("Would you like to place a side-bet?")
         print("\t1. Yes")
         print("\t2. No")
-        choice = int(input("Enter your choice: "))  # stores user's choice
 
-        if choice == 1:  # executes if the user chooses to place a side-bet; they input a 1
-            return 1  # returns a 1
-        elif choice == 2:  # executes if the user chooses not to place a side-bet; they input a 2
-            return 2  # returns a 2
-        else:  # executes if user placed an invalid input
-            print("Error: please enter a valid input")
+        try:
+            choice = int(input("Enter your choice: "))  # stores user's choice
+
+            if choice == 1:  # executes if the user chooses to place a side-bet; they input a 1
+                return 1  # returns a 1
+            elif choice == 2:  # executes if the user chooses not to place a side-bet; they input a 2
+                return 2  # returns a 2
+            else:  # executes if user placed an invalid input
+                print("Error: please enter a valid input")
+        except ValueError:
+            print("Error: please enter a valid numeric input\n")
 
 
 def sidebet():
@@ -205,36 +228,40 @@ def sidebet():
         print("What you like to bet on rolling?")
         print("\t1. Single value")
         print("\t2. Doubles")
-        sidebetChoice = int(input("Enter choice: "))  # stores user's choice of bet
 
-        if sidebetChoice == 1:  # executes if the user chooses to roll for a single value; user input a 1
-            print("Which value would you like to bet on rolling?")
-            print("\t4\t5\t6\t8\t9\t10")
-            singlesBet = int(input("Enter choice (the specific value): "))  # stores value of bet
-            return singlesBet  # returns value
-        elif sidebetChoice == 2:  # executes if user chooses to roll for a pair of doubles; user input a 2
-            doublesFlag = True  # Boolean flag variable
-            while doublesFlag:  # runs while flag is true
-                print("Which value of doubles would you like to roll for?")
-                print("\tPair of 2's (pays 7:1)")
-                print("\tPair of 3's (pays 9:1)")
-                print("\tPair of 4's (pays 9:1)")
-                print("\tPair of 5's (pays 7:1)")
-                doublesBet = int(input("Enter choice of doubles (the specific value): "))  # stores value of pair
+        try:
+            sidebetChoice = int(input("Enter choice: "))  # stores user's choice of bet
 
-                if 2 <= doublesBet <= 5:  # executes if user picks a value from 2 to 5
-                    if doublesBet == 2:  # executes if the user chose to roll for a pair of 2's
-                        return 92  # returns a 92 to represent the 2
-                    elif doublesBet == 3:  # executes if the user chose to roll for a pair of 3's
-                        return 93  # returns a 93 to represent the 3
-                    elif doublesBet == 4:  # executes if the user chose to roll for a pair of 4's
-                        return 94  # returns a 94 to represent the 4
-                    elif doublesBet == 5:  # executes if the user chose to roll for a pair of 5's
-                        return 95  # returns a 95 to represent the 5
-                else:  # executes if user didn't choose a value from 2 to 5
-                    print("Error: please enter valid pair of doubles")
-        else:  # executes if the user's choice was an invalid input
-            print("Error: please enter correct form of input")
+            if sidebetChoice == 1:  # executes if the user chooses to roll for a single value; user input a 1
+                print("Which value would you like to bet on rolling?")
+                print("\t4\t5\t6\t8\t9\t10")
+                singlesBet = int(input("Enter choice (the specific value): "))  # stores value of bet
+                return singlesBet  # returns value
+            elif sidebetChoice == 2:  # executes if user chooses to roll for a pair of doubles; user input a 2
+                doublesFlag = True  # Boolean flag variable
+                while doublesFlag:  # runs while flag is true
+                    print("Which value of doubles would you like to roll for?")
+                    print("\tPair of 2's (pays 7:1)")
+                    print("\tPair of 3's (pays 9:1)")
+                    print("\tPair of 4's (pays 9:1)")
+                    print("\tPair of 5's (pays 7:1)")
+                    doublesBet = int(input("Enter choice of doubles (the specific value): "))  # stores value of pair
+
+                    if 2 <= doublesBet <= 5:  # executes if user picks a value from 2 to 5
+                        if doublesBet == 2:  # executes if the user chose to roll for a pair of 2's
+                            return 92  # returns a 92 to represent the 2
+                        elif doublesBet == 3:  # executes if the user chose to roll for a pair of 3's
+                            return 93  # returns a 93 to represent the 3
+                        elif doublesBet == 4:  # executes if the user chose to roll for a pair of 4's
+                            return 94  # returns a 94 to represent the 4
+                        elif doublesBet == 5:  # executes if the user chose to roll for a pair of 5's
+                            return 95  # returns a 95 to represent the 5
+                    else:  # executes if user didn't choose a value from 2 to 5
+                        print("Error: please enter valid pair of doubles")
+            else:  # executes if the user's choice was an invalid input
+                print("Error: please enter correct form of input")
+        except ValueError:
+            print("Error: please enter valid numeric input")
 
 
 def main():
